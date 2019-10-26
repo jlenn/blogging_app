@@ -4,9 +4,9 @@
     <div class="post">
 
         {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
-            </div>
+            <p class="date">{{ post.published_date }}</p>
+        {% else %}
+            <a href="{% url 'post_publish' pk=post.pk %}" class="btn btn-primary">Publish</a>
         {% endif %}
 
         {% if user.is_authenticated %}
@@ -15,6 +15,9 @@
 
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
+        {% if post.edited_date %}
+            <p class="date"><i>Edited on {{ post.edited_date }}</i></p>
+        {% endif %}
     </div>
 {% endblock %}
 
